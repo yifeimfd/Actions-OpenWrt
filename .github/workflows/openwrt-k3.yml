@@ -13,8 +13,8 @@ on:
   push:
     branches: 
       - master
-    paths:
-      - 'openwrt-k3.config'
+ #   paths:
+ #     - 'openwrt-k3.config'
     schedule:
       - cron: 0 8 * * 5
 #  watch:
