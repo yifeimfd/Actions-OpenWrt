@@ -14,7 +14,7 @@ on:
     branches: 
       - master
     paths:
-      - '.config'
+      - 'lede-p2w-64.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
