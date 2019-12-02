@@ -13,8 +13,8 @@ on:
   push:
     branches: 
       - master
-#   paths:
-#     - 'lede-p2w-64.config'
+    paths:
+      - 'lede-p2w-64.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -71,7 +71,7 @@ jobs:
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e .config ] && cp lede-p2w-64.config openwrt/.config
+        [ -e lede-p2w-64.config ] && cp lede-p2w-64.config openwrt/.config
         chmod +x diy.sh
         cd openwrt
         ../diy.sh
