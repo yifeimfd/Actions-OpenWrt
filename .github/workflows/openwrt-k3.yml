@@ -13,10 +13,10 @@ on:
   push:
     branches: 
       - master
- #   paths:
- #     - 'openwrt-k3.config'
-    schedule:
-      - cron: 0 8 * * 5
+    paths:
+      - 'openwrt-k3.config'
+#  schedule:
+#    - cron: 0 8 * * 5
 #  watch:
 #    types: [started]
 
@@ -58,9 +58,9 @@ jobs:
 
     - name: Clone source code
       env: 
-        REPO_URL: https://github.com/shenzt68/openwrt-1.git
+        REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
-      run: git clone  $REPO_URL -b $REPO_BRANCH openwrt
+      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -69,9 +69,11 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
+      env:
+        CONFIG_FILE: 'openwrt-k3.config'
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e openwrt-k3.config ] && cp openwrt-k3.config openwrt/.config
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x diy.sh
         cd openwrt
         ../diy.sh

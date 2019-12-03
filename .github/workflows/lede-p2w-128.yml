@@ -5,7 +5,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Lede-p2w-64
+name: Build Lede-p2w-128 
 
 on: 
   release:
@@ -14,7 +14,7 @@ on:
     branches: 
       - master
     paths:
-      - 'lede-p2w-64.config'
+      - 'lede-p2w-128.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -70,7 +70,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: 'lede-p2w-64.config'
+        CONFIG_FILE: 'lede-p2w-128.config'
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
