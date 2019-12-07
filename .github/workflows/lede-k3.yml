@@ -5,7 +5,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Lede-k3 
+name: Build OpenWrt
 
 on: 
   release:
@@ -14,7 +14,7 @@ on:
     branches: 
       - master
     paths:
-      - 'lede-k3.config'
+      - '.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -70,7 +70,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: 'lede-k3.config'
+        CONFIG_FILE: '.config'
         DIY_SH: 'diy.sh'
       run: |
         [ -e files ] && mv files openwrt/files
@@ -79,6 +79,9 @@ jobs:
         cd openwrt
         ../$DIY_SH
         make defconfig
+
+#    - name: SSH connection to Actions
+#      uses: P3TERX/debugger-action@master
 
     - name: Download package
       run: |
@@ -92,8 +95,14 @@ jobs:
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
-    - name : Upload artifact
+    - name : Upload packages
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt
-        path: openwrt/bin
+        name: OpenWrt packages
+        path: openwrt/bin/packages
+
+    - name : Upload targets
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt firmware
+        path: openwrt/bin/targets

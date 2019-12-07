@@ -5,7 +5,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build Lede-p2w-128 
+name: Build OpenWrt
 
 on: 
   release:
@@ -80,6 +80,9 @@ jobs:
         ../$DIY_SH
         make defconfig
 
+#    - name: SSH connection to Actions
+#      uses: P3TERX/debugger-action@master
+
     - name: Download package
       run: |
         cd openwrt && make download -j8
@@ -92,8 +95,14 @@ jobs:
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
-    - name : Upload artifact
+    - name : Upload packages
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt
-        path: openwrt/bin
+        name: OpenWrt packages
+        path: openwrt/bin/packages
+
+    - name : Upload targets
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt firmware
+        path: openwrt/bin/targets
