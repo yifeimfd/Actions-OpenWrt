@@ -5,7 +5,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build OpenWrt
+name: Build OpenWrt-k3
 
 on: 
   release:
@@ -14,7 +14,7 @@ on:
     branches: 
       - master
     paths:
-      - '.config'
+      - 'openwrt-k3.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -58,7 +58,7 @@ jobs:
 
     - name: Clone source code
       env: 
-        REPO_URL: https://github.com/shenzt68/lede.git 
+        REPO_URL: https://github.com/shenzt68/openwrt-1.git 
         REPO_BRANCH: master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
@@ -70,7 +70,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: '.config'
+        CONFIG_FILE: 'openwrt-k3.config'
         DIY_SH: 'diy.sh'
       run: |
         [ -e files ] && mv files openwrt/files
