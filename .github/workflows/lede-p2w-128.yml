@@ -17,8 +17,8 @@ on:
       - 'lede-p2w-128.config'
 #  schedule:
 #    - cron: 0 8 * * 5
-#  watch:
-#    types: [started]
+   watch:
+     types: [started]
 
 jobs:
   build:
