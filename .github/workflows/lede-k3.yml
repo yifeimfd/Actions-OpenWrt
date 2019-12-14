@@ -110,4 +110,4 @@ jobs:
       if: always()
       with:
         name: OpenWrt_firmware
-        path: ${{ env.FIRMWARE }}
+        path: openwrt/bin/targets/bcm53xx/generic/openwrt-bcm53xx-phicomm-k3-squashfs.trx
