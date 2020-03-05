@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Build p2w-128
+name: Build lede-p2w-128
 
 on:
   release:
@@ -22,7 +22,7 @@ on:
      types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/shenzt68/lede.git
   REPO_BRANCH: master
   CONFIG_FILE: p2w-128.config
   DIY_SH: diy.sh
