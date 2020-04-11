@@ -17,13 +17,13 @@ on:
       - master
     paths:
       - 'lede-k3.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-#  watch:
-#    types: started
+  schedule:
+    - cron: 0 8 * * 5
+  watch:
+    types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/shenzt68/lede.git 
   REPO_BRANCH: master
   CONFIG_FILE: lede-k3.config
   DIY_SH: diy.sh
